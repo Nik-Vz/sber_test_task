@@ -1,0 +1,9 @@
+WITH RECURSIVE date_list AS (
+  SELECT CURDATE() AS date, 1 AS iteration
+  UNION ALL
+  SELECT date + INTERVAL (FLOOR(RAND() * 6) + 2) DAY, iteration + 1
+  FROM date_list
+  WHERE iteration < 100
+)
+SELECT date
+FROM date_list;
